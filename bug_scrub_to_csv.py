@@ -15,6 +15,7 @@ Version 2:
     1. for function going thru list is made more efficient
     2. CSV module used to output to CSV file
 '''
+import borgv3_bug_api as borg_bug
 
 def open_text_file(filename):
     '''
@@ -34,6 +35,15 @@ def read_text_file(fileobject):
     for line in fileobject:
         if line.strip():
             yield line.strip()
+
+def bug_details(bug_id):
+    '''
+    INPUT - Bug-ID in string format
+    OUTPUT - List of information .... TBD
+    '''
+
+    bug_obj = borg_bug.task(None, bug_id, 'details')
+    return bug_obj.variables[bug_id]['Integrated-releases']
 
 def create_csv(input_filename, output_filename):
     '''
@@ -70,7 +80,6 @@ def create_csv(input_filename, output_filename):
             cdets_url = '{}{}")'.format(url_prefix[0], line)
             capps_url = '{}{}")'.format(url_prefix[1], line)
             capps_url2 = '{}{}")'.format(url_prefix[2], line)
-
             current_record.append(line)
             next(read_object)
             current_record.append(next(read_object).split(': ')[1])
@@ -78,6 +87,9 @@ def create_csv(input_filename, output_filename):
                 next(read_object)
             current_record.extend([next(read_object), cdets_url, capps_url,
                                    capps_url2])
+
+            #Gather integerated-releases from BORGv3_bug_api
+            current_record.append(bug_details(line))
             all_records.append(current_record)
         prev_line = line
 
