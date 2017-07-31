@@ -1,4 +1,5 @@
 '''
+Git Created, further versioning handled in Git
 Version 4:
     1. Two new columns
         a. CDETS URL of the bug
@@ -52,9 +53,9 @@ def create_csv(input_filename, output_filename):
 
     #Variables to store the URL prefixes for CDETS and CloudApps
     #=HYPERLINK is added to ensure a hyperlink appears in CSV and not just test
-    cdets_pfix = '=HYPERLINK("https://cdetsng.cisco.com/webui/#view='
-    capps_pfix = '=HYPERLINK("https://bst.cloudapps.cisco.com/bugsearch/bug/'
-    capps_pfix2 = '=HYPERLINK("https://quickview.cloudapps.cisco.com/quickview/bug/'
+    url_prefix = ['=HYPERLINK("https://cdetsng.cisco.com/webui/#view=',
+                  '=HYPERLINK("https://bst.cloudapps.cisco.com/bugsearch/bug/',
+                  '=HYPERLINK("https://quickview.cloudapps.cisco.com/quickview/bug/']
 
     #create the list of lists with Header Only, relevant records added later
     all_records = [['Identifier', 'AS Severity', 'Headline', 'CDETS Link',
@@ -66,9 +67,9 @@ def create_csv(input_filename, output_filename):
             current_record = []
 
             #The CDETS and CloudApps URLs are created with the prefix+Bug-ID
-            cdets_url = '{}{}")'.format(cdets_pfix, line)
-            capps_url = '{}{}")'.format(capps_pfix, line)
-            capps_url2 = '{}{}")'.format(capps_pfix2, line)
+            cdets_url = '{}{}")'.format(url_prefix[0], line)
+            capps_url = '{}{}")'.format(url_prefix[1], line)
+            capps_url2 = '{}{}")'.format(url_prefix[2], line)
 
             current_record.append(line)
             next(read_object)
