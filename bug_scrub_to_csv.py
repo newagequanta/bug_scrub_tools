@@ -39,11 +39,11 @@ def read_text_file(fileobject):
 def bug_details(bug_id):
     '''
     INPUT - Bug-ID in string format
-    OUTPUT - List of information .... TBD
+    OUTPUT - String containing Integerated-Releases
     '''
 
     bug_obj = borg_bug.task(None, bug_id, 'details')
-    return bug_obj.variables[bug_id]['Integrated-releases']
+    return ', '.join(bug_obj.variables[bug_id]['Integrated-releases'])
 
 def create_csv(input_filename, output_filename):
     '''
