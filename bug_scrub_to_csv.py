@@ -69,7 +69,8 @@ def create_csv(input_filename, output_filename):
 
     #create the list of lists with Header Only, relevant records added later
     all_records = [['Identifier', 'AS Severity', 'Headline', 'CDETS Link',
-                    'CloudApps Link', 'CloudApps Alternate Link']]
+                    'CloudApps Link', 'CloudApps Alternate Link',
+                    'Fixed Releases']]
 
     for line in read_object:
         if prev_line.startswith('Identifier'):
