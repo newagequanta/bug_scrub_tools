@@ -1,0 +1,31 @@
+{
+  "name": "bug_scrub_to_csv",
+  "main": "__init__.py",
+  "inputs": [
+    {
+      "name": "input_filename",
+      "type": "inputFile",
+      "value": null,
+      "optional": false,
+      "description": "Unicode-8 Text File of GDC Bug Scrub"
+    },
+    {
+      "name": "output_filename",
+      "type": "text",
+      "value": "output.csv",
+      "optional": true,
+      "description": "Name of the Output CSV (Should End in .csv)"
+    }
+  ],
+  "author": "nimbhasi",
+  "description": "This script accepts the GDC AS Bug Scrub, in Unicode-8 format (hint: Save As in MS Word) and produces an easy to read CSV file with the following information, for all the bug-IDs present in the bug scrub:\n\nBug-ID, AS Severity, Headline, CDETS URL, CloudApps URL, Fixed Releases ",
+  "entitlements": [
+    "public"
+  ],
+  "groups": [],
+  "contributors": [],
+  "minutes_saved": 60,
+  "labels": [],
+  "service": "python3",
+  "timeOut": 120000
+}
